@@ -6,6 +6,7 @@ from django.template import RequestContext
 
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
+from resumen.forms import RegistroForm
 # Create your views here.
 def verifica_cookie(request):
     if request.session.test_cookie_worked():
