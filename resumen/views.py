@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
 from resumen.forms import RegistroForm
+from resumen.models import Nomina
 # Create your views here.
 def verifica_cookie(request):
     if request.session.test_cookie_worked():
@@ -57,7 +58,7 @@ def ingresar(request):
             login(request, usuario)
 
             messages.success(request, 'A ingresado correctamente %s'%(usuario.control))
-            return redirect('index')
+            return HttpResponse('index', usuario)
             
         
         else:
@@ -66,5 +67,6 @@ def ingresar(request):
 
     return render(request, 'login.html')
 def mostrar_inicio(request):    
-    
+    nominas = Nomina.objects.all()
+    return render(request, 'index.html', {'nominas':nominas})
     return render(request, 'index.html')

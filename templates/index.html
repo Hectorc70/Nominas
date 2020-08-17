@@ -9,11 +9,10 @@
         <li><a href="">CONTROL NOMINA</a></li>
         <li><a href=""></a></li>
     </ul>
-    <div id="usuario">
+    <div class="menu-usuario">
         <h2>{{control}}</h2>
     </div>
-    <div id="salir">
-    </div>
+
 </nav>
 
 
@@ -31,7 +30,7 @@
     </div>
     <div id="tbl">
         <table>
-            <tr id="titulos">                
+            <tr id="titulos">
                 <th>Periodo</th>
                 <th>Año</th>
                 <th>Nomina</th>
@@ -50,11 +49,12 @@
                     <td> {{nomina.periodo}}</td>
                     <td> {{nomina.anno}}</td>
                     <td> {{nomina.nombre}}</td>
+                    <td> {{nomina.id_ejecucion}}</td>
                     <td> {{nomina.fecha_pago}}</td>
                     <td> {{nomina.num_xml}}</td>
                     <td> {{nomina.importe_isr}}</td>
                     <td>{{nomina.isr_tim_retim}}</td>
-                    <td> {{nomina.comentario}}</td>                    
+                    <td> {{nomina.comentario}}</td>
                     <td class="opcion-tbl">
                         {% load static %}<img src="{% static 'img/editar.png' %}" alt="editar" />
                     </td>
