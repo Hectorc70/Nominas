@@ -20,5 +20,7 @@ from resumen import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.ingresar, name='login'),
     path('inicio/', views.mostrar_inicio, name='index'),
+    path('registro/', views.registro_usuario, name='registro'),
 ]
