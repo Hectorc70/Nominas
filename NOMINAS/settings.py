@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'resumen',
 ]
 
+AUTH_USER_MODEL = 'Usuarios.Usuario'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,9 +80,9 @@ WSGI_APPLICATION = 'NOMINAS.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'nombreDB',
-            'USER': 'nombreusuario',
-            'PASSWORD': 'pass',
+            'NAME': 'pruebas',
+            'USER': 'root',
+            'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '3306',
         }
