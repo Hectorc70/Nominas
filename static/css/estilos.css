@@ -1,0 +1,268 @@
+
+/* FUENTES*/
+
+@font-face{
+    font-family: "roboto";
+    src: url("../fonts/Roboto/Roboto-Regular.ttf");
+}
+@font-face{
+    font-family: "anton";
+    src: url("../fonts/Anton/Anton-Regular.ttf");
+}
+
+@font-face{
+    font-family: "B-ops-one";
+    src: url("../fonts/Black_Ops_One/BlackOpsOne-Regular.ttf");
+}
+
+
+
+/* ESTILOS GENERALES*/
+.aviso,
+.rojo{
+    display: block;    
+    padding: 1px;
+    color: #ffffff;
+    margin-top: 4px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #df7878;
+}
+
+.aviso,
+.verde{
+    display: block;    
+    padding: 1px;
+    color: #ffffff;
+    margin-top: 4px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #6cac89;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    
+    background-color: #b8b8b8; 
+    background-image: url("../img/patron.png");
+    
+}
+ #container{
+    width: 90%;
+    height:800px;
+    margin: auto;
+    /* background-color: brown; */
+ }
+
+
+/* CABEZERA*/
+#cabezera{ 
+    background-color: white;
+    width: 100%;
+    margin: 0px auto;   
+    background-size:16px 16px;  
+    height: 150px;   
+    box-shadow:  10px 5px 5px #7a7a7a;
+    padding-bottom: 10px;
+    
+}
+#cabezera #logo img{
+    display: block;
+    padding-top: 20px;
+    text-align: center;
+    margin: 0px auto;
+    width: 300px;
+}
+
+
+
+
+/* FORMULARIOs*/
+#conte-form{ 
+    /* background-color: blue; */
+    width: 80%;
+    margin: auto;    
+    margin-top: 100px;   
+
+    
+}
+
+form{ 
+    display: block;
+    background-color: #3d3d3d;
+    margin: auto;
+    width: 45%;    
+    text-align: center;
+    color: #ffffff;    
+    border-radius: 1.5em; 
+    box-shadow:  10px 5px 5px #7a7a7a;
+}
+
+
+.form-titulo{
+    border: none;
+    border-radius: .9em ;    
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.form-titulo a{
+text-align: center;  
+display: inline;        
+text-decoration: none;
+font-family: roboto;
+font-size: 25px;
+color: white;
+font-weight: bold;  
+}
+.form-titulo a:hover{
+    color: #32add3;
+
+}
+
+#lin-div{
+    display: inline-block;
+    border: none;    
+    width:7px;
+    height: 22px;
+    background-color: #974141;
+    margin-top: 6px;
+}
+hr{
+    border: 1px solid #974141;
+}
+.form-campos{
+    display: block;    
+    padding: 5px;    
+    margin-top: 15px;
+   /*  background-color: #df7878; */
+}
+
+
+.form-campos label{
+    font-size: 25px;
+    text-transform: uppercase;
+   /*  background-color: #7e0000; */
+
+}
+.form-campos input  {
+    font-family: anton;
+    text-align:center;
+    font-size: 18px;    
+    color: #3d3d3d;
+    display: block !important;
+    height: 30px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 2px solid #974141;
+    border-radius: .9em ;
+
+}
+.form-campos input:focus{   
+    outline: none;
+    border: 1.5px solid #974141;
+    
+} 
+
+.form-campos input:hover{ 
+    border: 1.7px solid #32add3;
+}
+#conte-form .btn-enviar{
+    padding-top: 10px;
+    
+
+}
+#conte-form button{
+    border: none;
+    display: block;   
+    width: 50%;
+    height: 30px;    
+    margin: auto;   
+    background-color: #974141;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: .9em ;
+    
+}   
+
+#conte-form button:hover{
+    background-color:  #32add3;
+    cursor: pointer;   
+}
+
+
+/* FORMULARIO logueo*/
+
+
+
+#box-login{
+    width: 100%;
+    height: 280px;
+   /* background-color: lightpink; */
+}
+
+/* FORMULARIO RESGISTRO*/
+
+#conte-register{
+    width: 70%;
+    margin: auto;    
+    margin-top: 100px;  
+    
+    
+
+}
+
+#conte-register form{
+    width: 60%;    
+}
+#box-register{
+    width: 100%;
+    height: 350px; 
+   /*  background-color: aquamarine; */
+}
+
+#box-register .form-campos .label{   
+    margin-top: 15px;
+    float: left;    
+    padding-left: 10px;    
+    clear: both;  
+   /*  background-color: coral; */
+}
+
+#box-register .form-campos label{
+    font-size: 20px;
+}
+#box-register .form-campos .input{     
+    float: right;    
+    padding-right: 10px;    
+    width: 40%;
+}
+#box-register .form-campos input{
+    height: 25px;
+    width: 100%;   
+}
+
+#conte-register .btn-enviar{
+    clear: both;
+    padding-top: 20px;        
+}
+
+
+#conte-register button {    
+    border: none;
+    display: block;  
+    width: 200px;
+    height: 30px; 
+    margin: auto;
+    background-color: #974141;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: .9em ;
+}

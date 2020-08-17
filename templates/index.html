@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block content %}
+<nav id="navegacion">
+    <ul>
+        <li><a href="">RESUMEN DE NOMINAS</a></li>
+        <li><a href="">CONTROL NOMINA</a></li>
+        <li><a href=""></a></li>
+    </ul>
+    <div id="usuario">
+        <h2>{{control}}</h2>
+    </div>
+    <div id="salir">
+    </div>
+</nav>
+
+
+{% if messages %}
+{% for mensaje in messages %}
+<div class="aviso" class="verde">
+    {{mensaje}}
+</div>
+
+{% endfor%}
+{% endif %}
+<section id="seccion">
+    <div class="cont-button">
+        <button id="btn-agregar" type="button">Nuevo+</button>
+    </div>
+    <div id="tbl">
+        <table>
+            <tr id="titulos">                
+                <th>Periodo</th>
+                <th>Año</th>
+                <th>Nomina</th>
+                <th>ID Nomina</th>
+                <th>Fecha Pago</th>
+                <th>No. XML´S</th>
+                <th>Importe ISR</th>
+                <th>Importe ISR + Retimbre</th>
+                <th>Comentarios</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            <tbody id="tbl-datos">
+                {% for nomina in nominas%}
+                <tr id=" filas">
+                    <td> {{nomina.periodo}}</td>
+                    <td> {{nomina.anno}}</td>
+                    <td> {{nomina.nombre}}</td>
+                    <td> {{nomina.fecha_pago}}</td>
+                    <td> {{nomina.num_xml}}</td>
+                    <td> {{nomina.importe_isr}}</td>
+                    <td>{{nomina.isr_tim_retim}}</td>
+                    <td> {{nomina.comentario}}</td>                    
+                    <td class="opcion-tbl">
+                        {% load static %}<img src="{% static 'img/editar.png' %}" alt="editar" />
+                    </td>
+                    <td class="opcion-tbl">
+                        {% load static %}<img src="{% static 'img/borrar.png' %}" alt="editar" />
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+
+        </table>
+    </div>
+</section>
+{% endblock %}

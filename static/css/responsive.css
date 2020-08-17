@@ -1,0 +1,130 @@
+@media(max-width:1024px) and (max-height:1366px){
+
+    #container{
+        width: 100%;
+        height: 1366px;
+        
+    }
+    #conte-form{
+        
+        width: 100%;
+
+    }
+    form{
+        width: 80%;
+    }
+    
+}
+@media(max-width:1157px) {
+
+       /* FORMULARIO REGISTRO */
+
+    #conte-register{
+        margin-top: 50px;
+    }
+       
+     #conte-register form{
+        width: 70%;
+        
+    }       
+
+    #box-register{               
+        height: 575px; 
+       
+    }
+    #box-register .form-campos .label{        
+        float: none;    
+        margin-top: 10px;
+       
+    }
+
+    #box-register .form-campos label{
+        font-size: 18px;
+    }
+
+    #box-register .form-campos .input{
+        display: block;
+        margin: auto; 
+        float: none;
+        width: 70%;                      
+    }
+    #box-register .form-campos input{
+        height: 25px;
+        width: 100%;  
+        
+    }
+
+    #conte-register button{
+        width: 250px;
+        height: 35px;
+    }
+
+} 
+  
+@media(max-width:655px){
+    #container{
+        width: 100%;
+    }
+    #cabezera{
+        height: 100px;
+    }
+    #cabezera #logo img{       
+        width: 200px;
+    }
+
+    #conte-form{        
+        width: 100%;    
+    
+        
+    }
+    form{
+        width: 70%;
+    }
+    
+    #conte-register button{
+        width: 170px;
+        height: 30px;
+    }
+ 
+}
+
+@media(max-width:480px){ 
+
+    #conte-register{
+        width: 90%;
+        margin-top: 50px;
+    }
+       
+
+
+    #conte-register form{
+        width: 90%;
+        
+    }  
+
+    #box-register{               
+        height: 575px; 
+       
+    }
+
+}
+
+@media(max-width:330px){ 
+
+    form{
+        width: 80%;
+    }
+
+    #conte-form{
+        margin-top: 40px;
+    }   
+    .form-titulo a{       
+        font-size: 20px;   
+    }
+
+    .form-campos label{
+        font-size: 20px;        
+    
+    }
+    
+}
