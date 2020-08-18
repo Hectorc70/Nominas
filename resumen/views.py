@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required, permission_required
 
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
@@ -30,15 +31,15 @@ def registro_usuario(request):
         email = formulario.cleaned_data.get('email')
         password = formulario.cleaned_data.get('password')
         
-        usuario = Empleado.objects.create_user(control=control, password=password, 
+        usuario_r = Usuario.objects.create_user(control=control, password=password, 
                                                 first_name=name, last_name=last_name,
                                                 second_last_name=last_second_name,
                                                 email=email)
-        if usuario:
-            login(request, usuario)
+        if usuario_r:
+            login(request, usuario_r)
             messages.success(request, 'Usuario creado correctamente')
 
-            return render(request, 'index.html', {'control':control})
+            return redirect('index')
 
     return render(request, 'register.html', {'form': formulario})
 
@@ -58,7 +59,7 @@ def ingresar(request):
             login(request, usuario)
 
             messages.success(request, 'A ingresado correctamente %s'%(usuario.control))
-            return HttpResponse('index', usuario)
+            return redirect('index')
             
         
         else:
@@ -66,7 +67,15 @@ def ingresar(request):
             return render(request, 'login.html')
 
     return render(request, 'login.html')
+
+@login_required()
 def mostrar_inicio(request):    
     nominas = Nomina.objects.all()
     return render(request, 'index.html', {'nominas':nominas})
-    return render(request, 'index.html')
+    
+@login_required()
+def salir(request):
+    logout(request)
+    messages.success(request, "Sesion Finalizada")
+
+    return redirect('login')

@@ -9,9 +9,15 @@
         <li><a href="">CONTROL NOMINA</a></li>
         <li><a href=""></a></li>
     </ul>
+    {% if user.is_authenticated %}
     <div class="menu-usuario">
-        <h2>{{control}}</h2>
+        <h2>{{ user.control}}</h2>
+        <h2>{{ user.first_name}}</h2>
+        <h2>{{ user.last_name}}</h2>
+        <h2>{{ user.second_last_name}}</h2>
+        <a href="{% url 'salir' %}">salir</a>
     </div>
+    {% endif %}
 
 </nav>
 
