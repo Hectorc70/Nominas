@@ -4,19 +4,13 @@
 
 {% block content %}
 <nav id="navegacion">
-    <ul>
-        <li><a href="">RESUMEN DE NOMINAS</a></li>
-        <li><a href="">CONTROL NOMINA</a></li>
-        <li><a href=""></a></li>
-    </ul>
+    <!-- <h1>Resumen de Nominas</h1> -->
     {% if user.is_authenticated %}
-    <div class="menu-usuario">
-        <h2>{{ user.control}}</h2>
-        <h2>{{ user.first_name}}</h2>
-        <h2>{{ user.last_name}}</h2>
-        <h2>{{ user.second_last_name}}</h2>
-        <a href="{% url 'salir' %}">salir</a>
-    </div>
+    <ul class="menu-usuario">
+        <li class="icon-usuario"> {% load static %}<img src="{% static 'img/usuario.png' %}" alt="usuario"></li>
+        <li> <a id="usuario">{{ user.first_name}}</a> </li>
+        <li><a href="{% url 'salir' %}">salir</a></li>
+    </ul>
     {% endif %}
 
 </nav>
