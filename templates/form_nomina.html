@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %} Nuevo Registro Nomina{% endblock %}
+
+{% block content%}
+<script>
+    $(document).ready(function () {
+
+        $("#usuario").val("{{usuario}}");
+        $("#fecha-mod").hide();
+
+    });
+</script>
+<div id="conte-nomina">
+    {% if messages %}
+
+        {% for mensaje in messages %}
+
+            {% if mensaje.tags == 'success' %}
+            <div class="aviso" , class="verde">
+                {{mensaje}}
+            </div>
+            {%else%}
+            <div class="aviso" , class="rojo">
+                {{mensaje}}
+            </div>
+            {% endif %}
+
+        {% endfor%}
+        
+    {% endif %}    
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-general">
+            <div class="form-titulo">
+                <a href="#">REGISTRO </a>
+                <div id="lin-div"></div>
+                <a href="#">NOMINA </a>
+            </div>
+            <hr />
+            <div id="box-nomina">
+                <div class="form-campos">
+                    {% for campo in form %}
+                    <div class="label">{{campo.label_tag}}</div>
+                    <div class="input">{{campo}}</div>
+                        {% if campo.errors %}
+                            <p style="color: aqua;">{{ campo.erros }}</p>
+                                
+                        {% endif %}
+                    
+                    {% endfor %}
+
+
+                </div>
+
+                <div class="btn-enviar">
+                    <button type="submit">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

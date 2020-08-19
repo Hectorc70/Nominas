@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
-from resumen.forms import RegistroForm
+from resumen.forms import RegistroForm, RegistroNomina
 from resumen.models import Nomina
+from django.contrib.auth import REDIRECT_FIELD_NAME
 # Create your views here.
 def verifica_cookie(request):
     if request.session.test_cookie_worked():
@@ -79,3 +80,34 @@ def salir(request):
     messages.success(request, "Sesion Finalizada")
 
     return redirect('login')
+
+@login_required()
+def registro_nomina(request):
+    usuario_l= request.user.control        
+    formulario = RegistroNomina(request.POST)
+    if request.method == 'POST' and formulario.is_valid():
+        nombre = formulario.cleaned_data.get('nombre')
+        anno = formulario.cleaned_data.get('anno')
+        periodo = formulario.cleaned_data.get('periodo')
+        id_ejecucion = formulario.cleaned_data.get('id_ejecucion')
+        fecha_pago = formulario.cleaned_data.get('fecha_pago')
+        num_xml = formulario.cleaned_data.get('num_xml')
+        importe_isr = formulario.cleaned_data.get('importe_isr')
+        isr_retim = formulario.cleaned_data.get('isr_retim')
+        comentario = formulario.cleaned_data.get('comentario')          
+
+        nom = Nomina(nombre=nombre, anno=anno, periodo=periodo,
+                    id_ejecucion=id_ejecucion, fecha_pago=fecha_pago,
+                    num_xml=num_xml, importe_isr=importe_isr,
+                    isr_retim=isr_retim, comentario=comentario,
+                    mod_usuario=usuario_l)
+        nom.save()
+
+        messages.success(request, 'Registro Guardado')
+
+        return redirect('index')
+
+    else:
+        messages.error(request, 'Registro No Guardado')
+
+    return render(request, 'form_nomina.html', {'form': formulario,'usuario': usuario_l})
