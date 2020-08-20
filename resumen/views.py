@@ -4,12 +4,14 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
+import datetime
 
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
 from resumen.forms import RegistroForm, RegistroNomina, NominaForm
 from resumen.models import Nomina
 from django.contrib.auth import REDIRECT_FIELD_NAME
+
 # Create your views here.
 def verifica_cookie(request):
     if request.session.test_cookie_worked():
@@ -85,7 +87,7 @@ def salir(request):
 @login_required()
 def registro_nomina(request):
     usuario_l= request.user.control        
-    formulario = RegistroNomina(request.POST)
+    formulario = NominaForm(request.POST)
     if request.method == 'POST' and formulario.is_valid():
         nombre = formulario.cleaned_data.get('nombre')
         anno = formulario.cleaned_data.get('anno')
@@ -96,12 +98,12 @@ def registro_nomina(request):
         importe_isr = formulario.cleaned_data.get('importe_isr')
         isr_retim = formulario.cleaned_data.get('isr_retim')
         comentario = formulario.cleaned_data.get('comentario')          
-
+        fecha = datetime.datetime.now()
         nom = Nomina(nombre=nombre, anno=anno, periodo=periodo,
                     id_ejecucion=id_ejecucion, fecha_pago=fecha_pago,
                     num_xml=num_xml, importe_isr=importe_isr,
                     isr_retim=isr_retim, comentario=comentario,
-                    mod_usuario=usuario_l)
+                    mod_usuario=usuario_l, fecha_mod=fecha)
         nom.save()
 
         messages.success(request, 'Registro Guardado')
@@ -117,13 +119,14 @@ def registro_nomina(request):
 
 def editar_nom(request, id_nom):
     nom = Nomina.objects.get(id = id_nom)
-
     form = NominaForm(instance= nom) 
-
-    if request.method == 'POST':
+    
+    if request.method == 'POST':       
         form = NominaForm(request.POST, instance=nom) 
         if form.is_valid():
-            nom = form.save(commit=False)
+            fecha = datetime.datetime.now()
+            nom.fecha_mod = fecha        
+            nom = form.save(commit=False)    
             nom.save()
             return redirect('index')
     return render(request, 'edit_nom.html', {'form':form})

@@ -75,8 +75,7 @@ class RegistroNomina(forms.Form):
                                     disabled=True, required=False)
     fecha_mod  = forms.DateTimeField(label="Ultima Modificación", 
                                     disabled=True, required=False,
-                                    widget=forms.DateTimeInput(attrs={'id' : 'fecha-mod'}),
-                                    input_formats='%Y-%m-%d %H:%M')
+                                    widget=forms.DateTimeInput(attrs={'id' : 'fecha-mod'}))
     
     def __init__(self, *args, **kwargs):
         super(RegistroNomina, self).__init__(*args, **kwargs)
@@ -95,5 +94,23 @@ class NominaForm(forms.ModelForm):
                 'periodo','id_ejecucion',
                 'fecha_pago','num_xml',
                 'importe_isr','isr_retim',
-                'comentario'
-                ]
+                'comentario','mod_usuario','fecha_mod'
+                ]   
+    
+    def __init__(self, *args, **kwargs):
+        super(NominaForm, self).__init__(*args, **kwargs)
+        self.fields['fecha_mod'].widget.attrs.update({
+                                            'class':'fecha-mod',
+                                            'readonly': 'True'
+        })
+        
+        self.fields['mod_usuario'].widget.attrs.update({
+                                            'class':'usuario',
+                                            'readonly': 'True'
+        })          
+        self.fields['nombre'].widget.attrs['placeholder'] = 'HONORARIOS'
+        self.fields['anno'].widget.attrs['placeholder'] = '2020'
+        self.fields['periodo'].widget.attrs['placeholder'] = '01'
+        self.fields['id_ejecucion'].widget.attrs['placeholder'] = 'ZH_ZHON_A414012020'
+        self.fields['fecha_pago'].widget.attrs['placeholder'] = '14012020'
+        
