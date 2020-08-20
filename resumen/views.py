@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
-from resumen.forms import RegistroForm, RegistroNomina
+from resumen.forms import RegistroForm, RegistroNomina, NominaForm
 from resumen.models import Nomina
 from django.contrib.auth import REDIRECT_FIELD_NAME
 # Create your views here.
@@ -73,7 +73,8 @@ def ingresar(request):
 def mostrar_inicio(request):    
     nominas = Nomina.objects.all()
     return render(request, 'index.html', {'nominas':nominas})
-    
+
+
 @login_required()
 def salir(request):
     logout(request)
@@ -111,3 +112,18 @@ def registro_nomina(request):
         messages.error(request, 'Registro No Guardado')
 
     return render(request, 'form_nomina.html', {'form': formulario,'usuario': usuario_l})
+
+
+
+def editar_nom(request, id_nom):
+    nom = Nomina.objects.get(id = id_nom)
+
+    form = NominaForm(instance= nom) 
+
+    if request.method == 'POST':
+        form = NominaForm(request.POST, instance=nom) 
+        if form.is_valid():
+            nom = form.save(commit=False)
+            nom.save()
+            return redirect('index')
+    return render(request, 'edit_nom.html', {'form':form})

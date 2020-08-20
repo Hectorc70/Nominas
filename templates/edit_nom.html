@@ -3,14 +3,7 @@
 {% block title %} Nuevo Registro Nomina{% endblock %}
 
 {% block content%}
-<script>
-    $(document).ready(function () {
 
-        $("#usuario").val("{{usuario}}");
-        $("#fecha-mod").hide();
-
-    });
-</script>
 <div id="conte-nomina">
     {% if messages %}
 
@@ -29,7 +22,7 @@
         {% csrf_token %}
         <div class="form-general">
             <div class="form-titulo">
-                <a href="#">REGISTRO </a>
+                <a href="#">EDITAR</a>
                 <div id="lin-div"></div>
                 <a href="#">NOMINA </a>
             </div>
@@ -37,20 +30,18 @@
             <div id="box-nomina">
                 <div class="form-campos">
                     {% for campo in form %}
-                    <div class="label">{{campo.label_tag}}</div>
-                    <div class="input">{{campo}}</div>
+                        <div class="label">{{campo.label_tag}}</div>
+                        <div class="input">{{campo}}</div>
                         {% if campo.errors %}
                             <p style="color: aqua;">{{ campo.erros }}</p>
                                 
                         {% endif %}
                     
                     {% endfor %}
-
-
                 </div>
 
                 <div class="btn-enviar">
-                    <button type="submit">Enviar</button>
+                    <button type="submit">Guardar</button>
                 </div>
             </div>
         </div>

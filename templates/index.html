@@ -3,17 +3,6 @@
 {% block title %} Inicio {% endblock %}
 
 {% block content %}
-<nav id="navegacion">
-    <!-- <h1>Resumen de Nominas</h1> -->
-    {% if user.is_authenticated %}
-    <ul class="menu-usuario">
-        <li class="icon-usuario"> {% load static %}<img src="{% static 'img/usuario.png' %}" alt="usuario"></li>
-        <li> <a id="usuario">{{ user.first_name}}</a> </li>
-        <li><a href="{% url 'salir' %}">salir</a></li>
-    </ul>
-    {% endif %}
-
-</nav>
 
 
 {% if messages %}
@@ -26,7 +15,7 @@
 {% endif %}
 <section id="seccion">
     <div class="cont-button">
-    <button onclick="" id="btn-agregar" type="button">Nuevo+</button>
+        <a id="btn-agregar" href="{% url 'nomina' %}">Nuevo +</a>
     </div>
     <div id="tbl">
         <table>
@@ -56,10 +45,14 @@
                     <td>{{nomina.isr_tim_retim}}</td>
                     <td> {{nomina.comentario}}</td>
                     <td class="opcion-tbl">
-                        {% load static %}<img src="{% static 'img/editar.png' %}" alt="editar" />
+                        <a href="/editar/{{nomina.id}}">
+                            {% load static %}<img src="{% static 'img/editar.png' %}" alt="editar" />
+                        </a>
+                        
                     </td>
                     <td class="opcion-tbl">
-                        {% load static %}<img src="{% static 'img/borrar.png' %}" alt="editar" />
+                        <a href="">{% load static %}<img src="{% static 'img/borrar.png' %}" alt="editar" /></a>
+                        
                     </td>
                 </tr>
                 {% endfor %}

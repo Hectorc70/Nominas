@@ -20,10 +20,25 @@
 <body>
     <div id="container">
         <header id="cabezera">
-            <div id="logo">
+            <a id="logo" href="{% url 'index' %}">
                 <img src="{% static 'img/logo_cab.png' %}" alt="logo" />                
-            </div>
+            </a>
         </header>
+        <nav id="navegacion">
+            <!-- <h1>Resumen de Nominas</h1> -->
+            {% if user.is_authenticated %}
+            <ul class="menu-usuario">
+                <li class="icon-usuario"> {% load static %}<img src="{% static 'img/usuario.png' %}" alt="usuario"></li>
+                <li> <a id="usuario">{{ user.first_name}}</a> </li>
+                <li><a href="{% url 'salir' %}">salir</a></li>
+            </ul>
+            <ul  class="opciones">
+                <li><a href="{% url 'index' %}">Resumen Nomina</a></li>
+            
+            </ul>
+            {% endif %}
+        
+        </nav>
         {% block content%}
 
         {% endblock%}

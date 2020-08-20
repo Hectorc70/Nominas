@@ -14,7 +14,7 @@ class Nomina(models.Model):
     isr_retim  = models.FloatField(verbose_name="ISR_TIM")   
     comentario  = models.CharField(max_length=300, verbose_name="COMENTARIO")
     mod_usuario  = models.CharField(max_length=8, verbose_name="MOD_USUARIO")
-    fecha_mod  = models.DateTimeField(verbose_name="FECHA_MODIFICACION", auto_now=True)
+    fecha_mod  = models.DateTimeField(verbose_name="FECHA_MODIFICACION", auto_now=True, editable=True)
     
     class Meta:
         db_table = 'Nominas'

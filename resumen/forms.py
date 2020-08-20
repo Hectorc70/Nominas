@@ -1,6 +1,7 @@
 from django import forms
 
 from usuarios.models import Usuario
+from resumen.models import Nomina
 
 
 class RegistroForm(forms.Form):
@@ -27,7 +28,7 @@ class RegistroForm(forms.Form):
     password_2  = forms.CharField(label='Repetir Contraseña', required=True, 
                                 min_length=5, widget=forms.PasswordInput())
 
-
+    
     def clean_control(self):
         control = self.cleaned_data.get('control')
 
@@ -76,7 +77,7 @@ class RegistroNomina(forms.Form):
                                     disabled=True, required=False,
                                     widget=forms.DateTimeInput(attrs={'id' : 'fecha-mod'}),
                                     input_formats='%Y-%m-%d %H:%M')
-
+    
     def __init__(self, *args, **kwargs):
         super(RegistroNomina, self).__init__(*args, **kwargs)
         self.fields['nombre'].widget.attrs['placeholder'] = 'HONORARIOS'
@@ -86,3 +87,13 @@ class RegistroNomina(forms.Form):
         self.fields['fecha_pago'].widget.attrs['placeholder'] = '14012020'
         
 
+class NominaForm(forms.ModelForm):
+
+    class Meta:
+        model = Nomina
+        fields = ['nombre', 'anno',
+                'periodo','id_ejecucion',
+                'fecha_pago','num_xml',
+                'importe_isr','isr_retim',
+                'comentario'
+                ]
