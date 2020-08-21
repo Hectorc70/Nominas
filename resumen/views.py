@@ -73,12 +73,22 @@ def ingresar(request):
 
 @login_required()
 def mostrar_inicio(request):
+    if request.method == 'POST':
+        anno = request.POST.get('b-anno')
+        periodo  = request.POST.get('b-periodo')
+
+        if periodo != '':
+            registros = Nomina.objects.filter(anno=anno, periodo=periodo)
+            return render(request, 'index.html', {'nominas':registros})
+        else:
+            registros = Nomina.objects.filter(anno=anno)
+            return render(request, 'index.html', {'nominas':registros})
     
     ultimo_per = Nomina.objects.latest('anno', 'periodo')    #ultimo periodo del ultmo año
     nominas = Nomina.objects.filter(anno=ultimo_per.anno, periodo=ultimo_per.periodo) #registros con el año y periodo pasados
     
     return render(request, 'index.html', {'nominas':nominas})
-
+    
 
 @login_required()
 def salir(request):

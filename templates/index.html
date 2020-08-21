@@ -16,6 +16,15 @@
     <div class="cont-button">
         <a id="btn-agregar" href="{% url 'nomina' %}">Nuevo +</a>
     </div>
+    <form class="in-busqueda" method="post">
+        {% csrf_token %}
+        <h3>BUSCAR</h3>
+        <label for="b-anno"> Año</label>
+        <input type="text" name="b-anno" id="">
+        <label for="b-periodo"> Periodo</label>
+        <input type="text" name="b-periodo" id="">
+        <button type="submit">Buscar</button>
+    </form>
     <div id="tbl">
         <table id="table_nom">
             <tr id="titulos">
