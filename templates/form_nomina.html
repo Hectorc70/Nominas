@@ -4,13 +4,12 @@
 
 {% block content%}
 <script>
-    $(document).ready(function () {
-
-        $("#usuario").val("{{usuario}}");
-        $("#fecha-mod").hide();
-
+    $(document).ready(function () {   
+        
+        $(".usuario").val("{{usuario}}");      
     });
 </script>
+
 <div id="conte-nomina">
     {% if messages %}
 
@@ -35,6 +34,7 @@
             </div>
             <hr />
             <div id="box-nomina">
+                
                 <div class="form-campos">
                     {% for campo in form %}
                     <div class="label">{{campo.label_tag}}</div>

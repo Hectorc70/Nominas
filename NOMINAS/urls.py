@@ -25,6 +25,6 @@ urlpatterns = [
     path('inicio/', views.mostrar_inicio, name='index'),
     path('registro/', views.registro_usuario, name='registro'),
     path('nomina/', views.registro_nomina, name='nomina'),
-    path('editar/<int:id_nom>', views.editar_nom, name='edit_nom')      
-
+    path('editar/<int:id_nom>', views.editar_nom, name='edit_nom'),     
+    path('borrar/<int:id_nom>', views.eliminar_registro_nom)
 ]

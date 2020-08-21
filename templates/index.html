@@ -4,7 +4,6 @@
 
 {% block content %}
 
-
 {% if messages %}
 {% for mensaje in messages %}
 <div class="aviso" class="verde">
@@ -17,8 +16,17 @@
     <div class="cont-button">
         <a id="btn-agregar" href="{% url 'nomina' %}">Nuevo +</a>
     </div>
+    <form class="in-busqueda" method="post">
+        {% csrf_token %}
+        <h3>BUSCAR</h3>
+        <label for="b-anno"> Año</label>
+        <input type="text" name="b-anno" id="">
+        <label for="b-periodo"> Periodo</label>
+        <input type="text" name="b-periodo" id="">
+        <button type="submit">Buscar</button>
+    </form>
     <div id="tbl">
-        <table>
+        <table id="table_nom">
             <tr id="titulos">
                 <th>Periodo</th>
                 <th>Año</th>
@@ -48,11 +56,12 @@
                         <a href="/editar/{{nomina.id}}">
                             {% load static %}<img src="{% static 'img/editar.png' %}" alt="editar" />
                         </a>
-                        
+
                     </td>
                     <td class="opcion-tbl">
-                        <a href="">{% load static %}<img src="{% static 'img/borrar.png' %}" alt="editar" /></a>
-                        
+                        <a href="/borrar/{{nomina.id}}">{% load static %}<img src="{% static 'img/borrar.png' %}"
+                                alt="editar" /></a>
+
                     </td>
                 </tr>
                 {% endfor %}

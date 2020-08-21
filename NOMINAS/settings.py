@@ -82,11 +82,12 @@ WSGI_APPLICATION = 'NOMINAS.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'pruebas',
+            'NAME': 'test',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '3306',
+            'TIME_ZONE': 'UTC',
         }
     }
 

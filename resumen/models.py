@@ -12,9 +12,9 @@ class Nomina(models.Model):
     num_xml = models.IntegerField(verbose_name="NUM_XML")
     importe_isr  = models.FloatField(verbose_name="IMPORTE_ISR")
     isr_retim  = models.FloatField(verbose_name="ISR_TIM")   
-    comentario  = models.CharField(max_length=300, verbose_name="COMENTARIO")
+    comentario  = models.CharField(max_length=300, blank=True, verbose_name="COMENTARIO", )
     mod_usuario  = models.CharField(max_length=8, verbose_name="MOD_USUARIO")
-    fecha_mod  = models.DateTimeField(verbose_name="FECHA_MODIFICACION", auto_now=True, editable=True)
+    fecha_mod  = models.DateTimeField(verbose_name="FECHA_MODIFICACION")
     
     class Meta:
         db_table = 'Nominas'
