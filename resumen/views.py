@@ -74,8 +74,8 @@ def ingresar(request):
 @login_required()
 def mostrar_inicio(request):
     if request.method == 'POST':
-        anno = request.POST.get('b-anno')
-        periodo  = request.POST.get('b-periodo')
+        anno = request.POST['b-anno']
+        periodo  = request.POST['periodo']
 
         if periodo != '':
             registros = Nomina.objects.filter(anno=anno, periodo=periodo)
