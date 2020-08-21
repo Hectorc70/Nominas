@@ -4,7 +4,6 @@
 
 {% block content %}
 
-
 {% if messages %}
 {% for mensaje in messages %}
 <div class="aviso" class="verde">
@@ -18,7 +17,7 @@
         <a id="btn-agregar" href="{% url 'nomina' %}">Nuevo +</a>
     </div>
     <div id="tbl">
-        <table>
+        <table id="table_nom">
             <tr id="titulos">
                 <th>Periodo</th>
                 <th>Año</th>
@@ -48,11 +47,12 @@
                         <a href="/editar/{{nomina.id}}">
                             {% load static %}<img src="{% static 'img/editar.png' %}" alt="editar" />
                         </a>
-                        
+
                     </td>
                     <td class="opcion-tbl">
-                        <a href="">{% load static %}<img src="{% static 'img/borrar.png' %}" alt="editar" /></a>
-                        
+                        <a href="/borrar/{{nomina.id}}">{% load static %}<img src="{% static 'img/borrar.png' %}"
+                                alt="editar" /></a>
+
                     </td>
                 </tr>
                 {% endfor %}

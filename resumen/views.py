@@ -8,7 +8,7 @@ import datetime
 
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
-from resumen.forms import RegistroForm, RegistroNomina, NominaForm
+from resumen.forms import RegistroForm, NominaForm
 from resumen.models import Nomina
 from django.contrib.auth import REDIRECT_FIELD_NAME
 
@@ -72,8 +72,11 @@ def ingresar(request):
     return render(request, 'login.html')
 
 @login_required()
-def mostrar_inicio(request):    
-    nominas = Nomina.objects.all()
+def mostrar_inicio(request):
+    
+    ultimo_per = Nomina.objects.latest('anno', 'periodo')    #ultimo periodo del ultmo año
+    nominas = Nomina.objects.filter(anno=ultimo_per.anno, periodo=ultimo_per.periodo) #registros con el año y periodo pasados
+    
     return render(request, 'index.html', {'nominas':nominas})
 
 
@@ -130,3 +133,10 @@ def editar_nom(request, id_nom):
             nom.save()
             return redirect('index')
     return render(request, 'edit_nom.html', {'form':form})
+
+
+def eliminar_registro_nom(request, id_nom):
+    registro = Nomina.objects.get(id = id_nom)    
+    registro.delete()
+    return redirect('index')
+    
