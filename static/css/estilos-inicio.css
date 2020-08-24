@@ -61,7 +61,7 @@
     border-radius: .6em;
     margin-right: 5px;     
     border: solid 1px #3d3d3d;
-    width:10%;
+    width:15%;
     float: left;
     
 }
@@ -71,11 +71,11 @@
 }
 #op-busqueda select:focus{   
     outline: none; 
-    border: solid 1px #00acf0
+    border: solid 2px aquamarine
 }
 
 #op-busqueda select:hover{    
-    border: solid 1px #00acf0
+    border: solid 2px aquamarine
 }
 
 .btn{   
@@ -86,11 +86,13 @@
     text-transform: uppercase;
     border-radius: .5em ;    
     width:20%;
-    height: 20px;   
+    height: 20px;  
+    outline: none; 
 }
 
-.btn:hover{
-    background-color: #7a7a7a;    
+.btn:hover{           
+    background-color: aquamarine;   
+  
 }
 
 #exportar{
@@ -102,12 +104,19 @@
     
 }
 
-#exportar img{
-    margin-top: 10px;
-    width: 60%;
-    height: 60%;        
+#exportar button{
+    width: 90%;
+    background-color: aquamarine;
+    position: static;
+    bottom: 0px;
+    height: 100%;
 }
 
+#exportar button:hover{
+    width: 90%;
+    background-color: #00acf0;
+    
+}
 
 /* TABLAS */
 
@@ -170,4 +179,23 @@ table #titulos th{
 .opcion-tbl img{
     width: 20px;
     height: 20px;
-}    
+} 
+tfoot{      
+    padding: 0px; 
+}   
+
+tfoot td[class*='t-num']{    
+    color: #3d3d3d;
+    text-align: left;
+    padding: 3px;
+    padding-left: 10px;
+    border-radius: .4em; 
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+tfoot td[class*='t-num']:hover{
+    box-shadow: 0px 0px 10px 2px #7a7a7a;    
+    color: #32add3;
+}

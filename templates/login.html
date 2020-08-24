@@ -6,13 +6,13 @@
 
 <div id="conte-form">
     {% if messages %}
-    {% for mensaje in messages %}
-    {% if mensaje.tags == 'error' %}
-    <div class="aviso" , class="rojo">
-        {{mensaje}}
-    </div>
-    {% endif %}
-    {% endfor%}
+        {% for mensaje in messages %}
+            {% if mensaje.tags == 'error' %}
+                <div class="aviso rojo">
+                    {{mensaje}}
+                </div>
+            {% endif %}
+        {% endfor%}
     {% endif %}
 
     <form method="post" action=''>

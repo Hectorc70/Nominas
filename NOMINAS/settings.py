@@ -123,7 +123,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-USE_THOUSAND_SEPARATOR = True
+USE_THOUSAND_SEPARATOR = False
 #THOUSAND_SEPARATOR = ','
 
 # Static files (CSS, JavaScript, Images)

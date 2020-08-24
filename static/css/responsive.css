@@ -22,15 +22,15 @@
     #conte-register{
         margin-top: 50px;
     }
-       
-     #conte-register form{
+
+    #conte-register form{
         width: 70%;
         
     }       
 
     #box-register{               
         height: 575px; 
-       
+
     }
     #box-register .form-campos .label{        
         float: none;    
@@ -85,6 +85,10 @@
         width: 170px;
         height: 30px;
     }
+    .in-busqueda{
+        width: 70%;
+        
+    }
  
 }
 
@@ -104,7 +108,11 @@
 
     #box-register{               
         height: 575px; 
-       
+    
+    }
+    .in-busqueda{
+        width: 85%;
+        
     }
 
 }

@@ -61,7 +61,7 @@ def ingresar(request):
         if usuario:
             login(request, usuario)
 
-            messages.success(request, 'A ingresado correctamente %s'%(usuario.control))
+            messages.success(request, 'A ingresado correctamente')
             return redirect('index')
             
         

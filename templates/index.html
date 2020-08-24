@@ -3,17 +3,49 @@
 {% block title %} Inicio {% endblock %}
 
 {% block content %}
-<script></script>
+<script>
+    $(document).ready(function () {
+        var total_col1 = 0;
+        var total_col2 = 0;
 
-{% if messages %}
-{% for mensaje in messages %}
-<div class="aviso" class="verde">
-    {{mensaje}}
-</div>
+        $('#table_nom #tbl-datos').find('tr').each(function (i, el) {
 
-{% endfor%}
-{% endif %}
+            total_col1 += parseFloat($(this).find('td').eq(6).text());
+            total_col2 += parseFloat($(this).find('td').eq(7).text());
+
+
+        });
+
+        console.log(total_col2);
+
+        if (isNaN(total_col2)) {
+            $('#table_nom tfoot tr td').eq(6).text("" + total_col1);
+            $('#table_nom tfoot tr td').eq(7).text("" + '0.00');
+        }
+        else {
+            $('#table_nom tfoot tr td').eq(6).text("" + total_col1);
+            $('#table_nom tfoot tr td').eq(7).text("" + total_col2);
+        }
+
+
+
+    });
+
+
+
+</script>
+
+
 <section id="seccion">
+    {% if messages %}
+        {% for mensaje in messages %}
+            {% if mensaje.tags == 'success' %}
+                <div class="aviso verde">
+                    {{mensaje}}
+                </div>
+            {% endif %}
+        {% endfor%}
+    {% endif %}
     <div class="cont-button">
         <a id="btn-agregar" href="{% url 'nomina' %}">Nuevo +</a>
     </div>
@@ -60,9 +92,8 @@
 
             <button class="btn" type="submit">Buscar</button>
         </div>
-        <div id="exportar">   
-            
-            {% load static %}<img src="{% static 'img/export_excel.png' %}" alt="editar" />
+        <div id="exportar">
+            <button class="btn" type="button" onclick="saveAsExcel('table_nom', 'prueba.xls')">Exportar Excel</button>
         </div>
 
     </form>
@@ -90,8 +121,8 @@
                     <td> {{nomina.id_ejecucion}}</td>
                     <td> {{nomina.fecha_pago}}</td>
                     <td> {{nomina.num_xml}}</td>
-                    <td> {{nomina.importe_isr}}</td>
-                    <td>{{nomina.isr_tim_retim}}</td>
+                    <td class="numero"> {{nomina.importe_isr}}</td>
+                    <td class="numero">{{nomina.isr_retim}}</td>
                     <td> {{nomina.comentario}}</td>
                     <td class="opcion-tbl">
                         <a href="/editar/{{nomina.id}}">
@@ -107,8 +138,23 @@
                 </tr>
                 {% endfor %}
             </tbody>
-
-
+            {% if nominas%}
+            <tfoot>
+                <tr>
+                    <td class="t-num">Totales</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="t-num"> </td>
+                    <td class="t-num"> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+            {% endif %}
         </table>
     </div>
 </section>
