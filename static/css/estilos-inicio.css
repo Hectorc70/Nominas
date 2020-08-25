@@ -110,6 +110,7 @@
     position: static;
     bottom: 0px;
     height: 100%;
+    padding: 2px;
 }
 
 #exportar button:hover{

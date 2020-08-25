@@ -110,7 +110,9 @@
                 <th>Importe ISR + Retimbre</th>
                 <th>Comentarios</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
+                {% if perms.staff%}
+                    <th>Eliminar</th>
+                {% endif %}
             </tr>
             <tbody id="tbl-datos">
                 {% for nomina in nominas%}
@@ -130,11 +132,12 @@
                         </a>
 
                     </td>
+                    {% if perms.staff%}
                     <td class="opcion-tbl">
                         <a href="/borrar/{{nomina.id}}">{% load static %}<img src="{% static 'img/borrar.png' %}"
-                                alt="editar" /></a>
-
+                                alt="editar" /></a>                        
                     </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
