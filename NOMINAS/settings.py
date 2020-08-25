@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'NOMINAS.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'test',
+            'NAME': 'rnominas',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',
