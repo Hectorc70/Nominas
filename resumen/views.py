@@ -61,7 +61,7 @@ def ingresar(request):
         if usuario:
             login(request, usuario)
 
-            messages.success(request, 'A ingresado correctamente %s'%(usuario.control))
+            messages.success(request, 'A ingresado correctamente')
             return redirect('index')
             
         
@@ -144,9 +144,11 @@ def editar_nom(request, id_nom):
             return redirect('index')
     return render(request, 'edit_nom.html', {'form':form})
 
-
+@permission_required('staff','index')
 def eliminar_registro_nom(request, id_nom):
-    registro = Nomina.objects.get(id = id_nom)    
-    registro.delete()
-    return redirect('index')
     
+    
+        registro = Nomina.objects.get(id = id_nom)    
+        registro.delete()       
+        return redirect('index')  
+        

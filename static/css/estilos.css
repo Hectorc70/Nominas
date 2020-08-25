@@ -18,25 +18,24 @@
 
 
 /* ESTILOS GENERALES*/
-.aviso,
-.rojo{
+.aviso{
+    
     display: block;    
     padding: 1px;
     color: #ffffff;
-    margin-top: 4px;
+    width: 30%;
+    margin-top: 1px;
     text-align: center;
-    font-size: 20px;
+    font-size: 20px; 
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+.rojo{
     background-color: #df7878;
 }
 
-.aviso,
 .verde{
-    display: block;    
-    padding: 1px;
-    color: #ffffff;
-    margin-top: 4px;
-    text-align: center;
-    font-size: 20px;
     background-color: #6cac89;
 }
 
@@ -114,7 +113,7 @@ li >img{
 }
 
 .menu-usuario li:hover{
-    background-color: #7a7a7a;  
+    background-color: #00acf0
 }
 
 .opciones{   
@@ -139,7 +138,7 @@ li >img{
 }
 
 .opciones li:hover{
-    background-color: #7a7a7a;  
+    background-color: #00acf0;  
 }
 /* FORMULARIOs*/
 #conte-form{ 

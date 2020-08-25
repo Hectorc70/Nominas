@@ -6,19 +6,19 @@
 
 <div id="conte-form">
     {% if messages %}
-    {% for mensaje in messages %}
-    {% if mensaje.tags == 'error' %}
-    <div class="aviso" , class="rojo">
-        {{mensaje}}
-    </div>
-    {% endif %}
-    {% endfor%}
+        {% for mensaje in messages %}
+            {% if mensaje.tags == 'error' %}
+                <div class="aviso rojo">
+                    {{mensaje}}
+                </div>
+            {% endif %}
+        {% endfor%}
     {% endif %}
 
     <form method="post" action=''>
         {% csrf_token %}
         <div class="form-titulo">
-            <a href="#">LOGUIN </a>
+            <a href="#">LOGIN </a>
             <div id="lin-div"></div>
             <a href="{% url 'registro' %}"> REGISTRO</a>
         </div>

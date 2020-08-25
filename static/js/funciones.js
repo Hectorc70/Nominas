@@ -7,6 +7,7 @@ function eliminar() {
 		return false;
 }
 
-
-
+function guardar(){
+	let tabla = document.getElementById('table_nom');
+	saveAsExcel(tabla, 'hola');
 }

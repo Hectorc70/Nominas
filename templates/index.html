@@ -3,59 +3,99 @@
 {% block title %} Inicio {% endblock %}
 
 {% block content %}
+<script>
+    $(document).ready(function () {
+        var total_col1 = 0;
+        var total_col2 = 0;
 
-{% if messages %}
-{% for mensaje in messages %}
-<div class="aviso" class="verde">
-    {{mensaje}}
-</div>
+        $('#table_nom #tbl-datos').find('tr').each(function (i, el) {
 
-{% endfor%}
-{% endif %}
+            total_col1 += parseFloat($(this).find('td').eq(6).text());
+            total_col2 += parseFloat($(this).find('td').eq(7).text());
+
+
+        });
+
+        console.log(total_col2);
+
+        if (isNaN(total_col2)) {
+            $('#table_nom tfoot tr td').eq(6).text("" + total_col1);
+            $('#table_nom tfoot tr td').eq(7).text("" + '0.00');
+        }
+        else {
+            $('#table_nom tfoot tr td').eq(6).text("" + total_col1);
+            $('#table_nom tfoot tr td').eq(7).text("" + total_col2);
+        }
+
+
+
+    });
+
+
+
+</script>
+
+
 <section id="seccion">
+    {% if messages %}
+        {% for mensaje in messages %}
+            {% if mensaje.tags == 'success' %}
+                <div class="aviso verde">
+                    {{mensaje}}
+                </div>
+            {% endif %}
+        {% endfor%}
+    {% endif %}
     <div class="cont-button">
         <a id="btn-agregar" href="{% url 'nomina' %}">Nuevo +</a>
     </div>
     <form class="in-busqueda" method="post">
         {% csrf_token %}
-        <h3>BUSCAR</h3>
-        <label for="b-anno"> Año</label>
-        <select name="b-anno">
-            <option value=""> </option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-        </select>        
+        <div id="op-busqueda">
+            <h3>BUSCAR</h3>
+            <label for="b-anno"> Año</label>
+            <select name="b-anno">
+                <option value=""> </option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+            </select>
 
-        <label for="b-periodo"> Periodo</label>
-        <select name="periodo">
-            <option value=""></option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-        </select>
-        <button type="submit">Buscar</button>
+            <label for="b-periodo"> Periodo</label>
+            <select name="periodo">
+                <option value=""></option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+            </select>
+
+            <button class="btn" type="submit">Buscar</button>
+        </div>
+        <div id="exportar">
+            <button class="btn" type="button" onclick="saveAsExcel('table_nom', 'prueba.xls')">Exportar Excel</button>
+        </div>
+
     </form>
     <div id="tbl">
         <table id="table_nom">
@@ -70,7 +110,9 @@
                 <th>Importe ISR + Retimbre</th>
                 <th>Comentarios</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
+                {% if perms.staff%}
+                    <th>Eliminar</th>
+                {% endif %}
             </tr>
             <tbody id="tbl-datos">
                 {% for nomina in nominas%}
@@ -81,8 +123,8 @@
                     <td> {{nomina.id_ejecucion}}</td>
                     <td> {{nomina.fecha_pago}}</td>
                     <td> {{nomina.num_xml}}</td>
-                    <td> {{nomina.importe_isr}}</td>
-                    <td>{{nomina.isr_tim_retim}}</td>
+                    <td class="numero"> {{nomina.importe_isr}}</td>
+                    <td class="numero">{{nomina.isr_retim}}</td>
                     <td> {{nomina.comentario}}</td>
                     <td class="opcion-tbl">
                         <a href="/editar/{{nomina.id}}">
@@ -90,16 +132,32 @@
                         </a>
 
                     </td>
+                    {% if perms.staff%}
                     <td class="opcion-tbl">
                         <a href="/borrar/{{nomina.id}}">{% load static %}<img src="{% static 'img/borrar.png' %}"
-                                alt="editar" /></a>
-
+                                alt="editar" /></a>                        
                     </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
-
-
+            {% if nominas%}
+            <tfoot>
+                <tr>
+                    <td class="t-num">Totales</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="t-num"> </td>
+                    <td class="t-num"> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+            {% endif %}
         </table>
     </div>
 </section>

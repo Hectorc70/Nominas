@@ -37,17 +37,6 @@ class RegistroForm(forms.Form):
             raise forms.ValidationError('Ya existe el Usuario')
         
         return control                            
-
-
-
-    
-    def __init__(self, *args, **kwargs):
-        super(RegistroNomina, self).__init__(*args, **kwargs)
-        self.fields['nombre'].widget.attrs['placeholder'] = 'HONORARIOS'
-        self.fields['anno'].widget.attrs['placeholder'] = '2020'
-        self.fields['periodo'].widget.attrs['placeholder'] = '01'
-        self.fields['id_ejecucion'].widget.attrs['placeholder'] = 'ZH_ZHON_A414012020'
-        self.fields['fecha_pago'].widget.attrs['placeholder'] = '14012020'
         
 
 class NominaForm(forms.ModelForm):

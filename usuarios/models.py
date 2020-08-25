@@ -16,7 +16,7 @@ class Usuario(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = PersonalUsuario()
-
+    
     def __str__(self):
         return "Control: %s Nombre: %s %s"%(self.control, 
                         self.first_name,
