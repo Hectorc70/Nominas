@@ -128,24 +128,22 @@
     overflow: auto;
     scrollbar-width: 5px;
     width: 90%;  
-    height: 500px;  
+    height: 600px;  
     margin-left: auto;
     margin-right: auto;   
-    background-color: #c6f2ff;
+    background-color: #3d3d3d;
+    box-shadow:  5px 5px 10px #7a7a7a;       
 }
 
 
-#titulos{        
-    box-shadow:  4px px 5px #7a7a7a;
-    
-}
+
 
 table #titulos th{             
     padding: 5px;    
     height: 20px;    
     text-transform: uppercase;
     font-size: 14px;
-    background-color: #3d3d3d;
+    background-color: #00acf0;
     color: white;
     width: 300px; 
     position: sticky;
@@ -186,7 +184,7 @@ tfoot{
 }   
 
 tfoot td[class*='t-num']{    
-    color: #3d3d3d;
+    color:white;
     text-align: left;
     padding: 3px;
     padding-left: 10px;
@@ -196,7 +194,6 @@ tfoot td[class*='t-num']{
 }
 
 
-tfoot td[class*='t-num']:hover{
-    box-shadow: 0px 0px 10px 2px #7a7a7a;    
+tfoot td[class*='t-num']:hover{     
     color: #32add3;
 }
