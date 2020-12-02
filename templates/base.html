@@ -11,19 +11,34 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <script type="text/javascript" src="{% static 'js/funciones.js' %}"></script>
     <script src="{% static 'js/jquery-3.5.1.js' %}" type="text/javascript"></script>
-    <script src="{% static 'js/saveAsExcel.js' %}"  type="text/javascript" ></script>   
+    <script src="{% static 'js/saveAsExcel.js' %}" type="text/javascript"></script>
     <title>
         {% block title%} {% endblock %}
     </title>
+    <script>
 
+
+        $(document).ready(function () {
+    
+            var height = $(window).height();
+    
+            $('#container').height(height);
+        });
+    
+    </script>
 </head>
 
 <body>
-    
+    <div id="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <div id="container">
         <header id="cabezera">
             <a id="logo" href="{% url 'index' %}">
-                <img src="{% static 'img/logo_cab.png' %}" alt="logo" />                
+                <img src="{% static 'img/logo_cab.png' %}" alt="logo" />
             </a>
         </header>
         <nav id="navegacion">
@@ -34,23 +49,27 @@
                 <li> <a id="usuario">{{ user.first_name}}</a> </li>
                 <li><a href="{% url 'salir' %}">salir</a></li>
             </ul>
-            <ul  class="opciones">
+            <ul class="opciones">
                 <li><a href="{% url 'index' %}">Resumen Nomina</a></li>
-            
+                <li><a href="{% url 'concentrado' %}">Concentrado Totales</a></li>
+
             </ul>
             {% endif %}
-        
+
         </nav>
         {% block content%}
 
         {% endblock%}
-        <footer>
-            <h3>Version 1.0 By HGN</h3>
-        </footer>
-
+        
     </div>
+    <footer>
+        <h3>Version 1.0 By HGN</h3>
+    </footer>
     
 
+
 </body>
+
+
 
 </html>

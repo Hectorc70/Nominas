@@ -26,5 +26,8 @@ urlpatterns = [
     path('registro/', views.registro_usuario, name='registro'),
     path('nomina/', views.registro_nomina, name='nomina'),
     path('editar/<int:id_nom>', views.editar_nom, name='edit_nom'),     
-    path('borrar/<int:id_nom>', views.eliminar_registro_nom)
+    path('borrar/<int:id_nom>', views.eliminar_registro_nom),
+
+    path('concentrado/', views.mostrar_concentrado, name='concentrado'),
+    path('agregar_datos/', views.cargar_archivo, name='agregar_datos'),
 ]
