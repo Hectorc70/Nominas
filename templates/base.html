@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilos-inicio.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos_concentrado.css' %}">
     <script type="text/javascript" src="{% static 'js/funciones.js' %}"></script>
     <script src="{% static 'js/jquery-3.5.1.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/saveAsExcel.js' %}" type="text/javascript"></script>
@@ -22,7 +23,9 @@
     
             var height = $(window).height();
     
-            $('#container').height(height);
+            $('#seccion').height(height);
+
+            
         });
     
     </script>
@@ -60,11 +63,11 @@
         {% block content%}
 
         {% endblock%}
-        
+        <footer>
+            <h3>Version 1.0 By HGN</h3>
+        </footer>
     </div>
-    <footer>
-        <h3>Version 1.0 By HGN</h3>
-    </footer>
+    
     
 
 

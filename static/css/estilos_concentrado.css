@@ -1,0 +1,133 @@
+
+/* SCROOLL BAR */
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff00; 
+}
+
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ffffff00; 
+}
+
+  /* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #4e4e4e; 
+} */
+::-webkit-scrollbar:hover {
+    width: 10px;
+}
+
+
+#tablas{
+    display: block;
+    width: 90%;
+    
+    margin: 30px auto;
+}
+
+.conte-tbl-concentrado{
+    display: inline-block;
+    overflow: auto;
+    background-color: #3d3d3d;
+    width: 45%;
+    height: 500px;
+    margin: 35px;   
+    box-shadow: 5px 5px 10px #3d3d3d;    
+    
+}
+.titulo-tbl{
+    display: block;    
+    height: 20px;
+    
+    text-align: center;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: #076158;
+    padding: 5px;
+    padding-bottom: 10px;
+    border: 4px solid #3d3d3d;    
+}
+.titulo-tbl:hover{
+    background-color:#12c9b7;
+    cursor: pointer;  
+    color: #076158;
+    border: 4px solid #076158;
+} 
+.titulos-concentrado{        
+    width: 100%;
+   
+}
+
+.titulos-concentrado th{
+    height: 20px;    
+    color: white;
+    text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #12bdc9;
+    padding: 10px; 
+    position: sticky;
+    top: 0%;
+}
+
+
+
+
+
+
+.fila-datos:hover{
+    border: 1px solid #12c9b7;
+}
+
+.fila-datos > td{
+    background-color: white;
+    border-radius: .2em;
+    padding: 5px;
+    padding-left: 15px;
+}
+.fila-totales{    
+    position: sticky;
+    bottom: 0%;
+    margin-top: 5px;     
+    border: none; border-radius: .5em;
+}
+.celda-totales{  
+    background-color: #12c9b7;    
+    padding: 5px;
+    padding-left: 15px;
+    font-size: 19px;
+    font-weight: bold;
+    color: white;
+    border-radius: .4em;   
+    width:  100%;
+    border: 4px solid #076158;
+    
+}
+
+
+.leer-mas{       
+    bottom: 0px;  
+    float: right;
+    text-align: right;    
+    padding-right: 10px;
+    margin-top: 5px;
+}
+.leer-mas a{    
+    display: block;  
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: white;   
+}
+
+.leer-mas a:hover{
+    color: #139cae;
+    font-weight: bold;
+
+}

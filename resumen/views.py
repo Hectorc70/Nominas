@@ -12,9 +12,7 @@ from resumen.forms import RegistroForm, NominaForm
 from resumen.models import Nomina
 from django.contrib.auth import REDIRECT_FIELD_NAME
 
-from concentrado.recalculo import ArchivoRecalculo
-from concentrado.models import Recalculo
-from concentrado.modulos.rutas import abrir_archivo
+
 
 
 # Create your views here.
@@ -157,40 +155,4 @@ def eliminar_registro_nom(request, id_nom):
         registro.delete()       
         return redirect('index')  
 
-@login_required()
-def mostrar_concentrado(request):
-    
-    #ruta = 'C:\\Users\\Usuario\\Documents\\RETIMBRE\\2020\\layouts\\OCTUBRE\\10-OCTUBRE 2020.xlsx'
-    
-    return render(request, 'concentrado.html')
 
-
-def cargar_archivo(request):
-    ruta = abrir_archivo()
-    if ruta != '': 
-        datos = ArchivoRecalculo(ruta)
-        datos_recalculo = datos.ejecutar()
-        #breakpoint()
-        if datos_recalculo: 
-            breakpoint()
-            for hoja, datos in datos_recalculo.items():   
-                for dato in datos:
-                    periodo  = dato[0]
-                    anno = dato[1]
-                    control  = dato[2]
-                    importe  = dato[3]
-                    importe_redondeado  = dato[4]
-                    registro = Recalculo(periodo=periodo, anno=anno,control=control,
-                                        imp_recalc=importe, imp_recalc_red=importe_redondeado,
-                                        tipo_nom=hoja)
-
-                    registro.save()
-
-                messages.success(request, 'Datos guardados en la Base de datos')
-                return render(request,'concentrado.html')
-
-
-    else:        
-        messages.error(request, 'Se debe seleccionar un archivo')
-        return render(request,'concentrado.html')
-        

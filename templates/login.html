@@ -3,44 +3,44 @@
 {% block title %} Login {% endblock %}
 
 {% block content%}
-
-<div id="conte-form">
-    {% if messages %}
+<section id="seccion">
+    <div id="conte-form">
+        {% if messages %}
         {% for mensaje in messages %}
-            {% if mensaje.tags == 'error' %}
-                <div class="aviso rojo">
-                    {{mensaje}}
-                </div>
-            {% endif %}
+        {% if mensaje.tags == 'error' %}
+        <div class="aviso rojo">
+            {{mensaje}}
+        </div>
+        {% endif %}
         {% endfor%}
-    {% endif %}
+        {% endif %}
 
-    <form method="post" action=''>
-        {% csrf_token %}
-        <div class="form-titulo">
-            <a href="#">LOGIN </a>
-            <div id="lin-div"></div>
-            <a href="{% url 'registro' %}"> REGISTRO</a>
-        </div>
-
-        <hr />
-        <div id="box-login">
-            <div class="form-campos">
-                <label for="control">control</label>
-                <input type="text" class="input-campo" name="control" />
+        <form method="post" action=''>
+            {% csrf_token %}
+            <div class="form-titulo">
+                <a href="#">LOGIN </a>
+                <div id="lin-div"></div>
+                <a href="{% url 'registro' %}"> REGISTRO</a>
             </div>
 
-            <div class="form-campos">
-                <label for="psword">contraseña</label>
-                <input type="password" class="input-campo" name="psword" />
+            <hr />
+            <div id="box-login">
+                <div class="form-campos">
+                    <label for="control">control</label>
+                    <input type="text" class="input-campo" name="control" />
+                </div>
+
+                <div class="form-campos">
+                    <label for="psword">contraseña</label>
+                    <input type="password" class="input-campo" name="psword" />
+                </div>
+                <div class="btn-enviar">
+
+                    <button type="submit">Enviar</button>
+                </div>
             </div>
-            <div class="btn-enviar">
 
-                <button type="submit">Enviar</button>
-            </div>
-        </div>
-
-    </form>
-</div>
-
+        </form>
+    </div>
+</section>
 {% endblock %}

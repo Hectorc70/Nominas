@@ -16,18 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from resumen import views
+import resumen.views
+import concentrado.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.ingresar, name='login'),
-    path('salir/', views.salir, name='salir'),
-    path('inicio/', views.mostrar_inicio, name='index'),
-    path('registro/', views.registro_usuario, name='registro'),
-    path('nomina/', views.registro_nomina, name='nomina'),
-    path('editar/<int:id_nom>', views.editar_nom, name='edit_nom'),     
-    path('borrar/<int:id_nom>', views.eliminar_registro_nom),
+    path('', resumen.views.ingresar, name='login'),
+    path('salir/', resumen.views.salir, name='salir'),
+    path('inicio/', resumen.views.mostrar_inicio, name='index'),
+    path('registro/', resumen.views.registro_usuario, name='registro'),
+    path('nomina/', resumen.views.registro_nomina, name='nomina'),
+    path('editar/<int:id_nom>', resumen.views.editar_nom, name='edit_nom'),     
+    path('borrar/<int:id_nom>', resumen.views.eliminar_registro_nom),
 
-    path('concentrado/', views.mostrar_concentrado, name='concentrado'),
-    path('agregar_datos/', views.cargar_archivo, name='agregar_datos'),
+    path('concentrado/', concentrado.views.mostrar_concentrado, name='concentrado'),
+    path('agregar_datos/', concentrado.views.cargar_archivo, name='agregar_datos'),
 ]

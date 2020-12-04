@@ -3,38 +3,39 @@
 {% block title %} Registro {% endblock %}
 
 {% block content%}
-<div id="conte-register">
-    <form method="post" action=''>
-        {% csrf_token %}
-        <div class="form-general">
+<section id="seccion">
+    <div id="conte-register">
+        <form method="post" action=''>
+            {% csrf_token %}
+            <div class="form-general">
 
-            <div class="form-titulo">
-                <a href="#">REGISTRO </a>
-                <div id="lin-div"></div>
-                <a href="{% url 'login' %}"> LOGUIN</a>
+                <div class="form-titulo">
+                    <a href="#">REGISTRO </a>
+                    <div id="lin-div"></div>
+                    <a href="{% url 'login' %}"> LOGUIN</a>
 
-            </div>
-            <hr />
-            <div id="box-register">
-                <div  class="form-campos">
-                    {% for campo in form%}
+                </div>
+                <hr />
+                <div id="box-register">
+                    <div class="form-campos">
+                        {% for campo in form%}
                         <div class="label">{{campo.label_tag}}</div>
                         <div class="input">{{campo}}</div>
                         {% if campo.errors %}
-                            <p style="color: aqua;">{{ campo.erros }}</p>
-                            
+                        <p style="color: aqua;">{{ campo.erros }}</p>
+
                         {% endif %}
-                    {% endfor %}
-                    
-                </div>           
+                        {% endfor %}
 
-                <div class="btn-enviar">
-                    <button type="submit">Enviar</button>
+                    </div>
+
+                    <div class="btn-enviar">
+                        <button type="submit">Enviar</button>
+                    </div>
+
                 </div>
-                
             </div>
-        </div>
-    </form>
-</div>
-
+        </form>
+    </div>
+</section>
 {% endblock %}

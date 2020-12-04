@@ -5,32 +5,8 @@
 {% block content %}
 <script>
     $(document).ready(function () {
-        var total_col1 = 0;
-        var total_col2 = 0;
-
-        $('#table_nom #tbl-datos').find('tr').each(function (i, el) {
-
-            total_col1 += parseFloat($(this).find('td').eq(6).text());
-            total_col2 += parseFloat($(this).find('td').eq(7).text());
-
-
-        });
-
-        console.log(total_col2);
-
-        if (isNaN(total_col2)) {
-            $('#table_nom tfoot tr td').eq(6).text("" + total_col1);
-            $('#table_nom tfoot tr td').eq(7).text("" + '0.00');
-        }
-        else {
-            $('#table_nom tfoot tr td').eq(6).text("" + total_col1);
-            $('#table_nom tfoot tr td').eq(7).text("" + total_col2);
-        }
-
-
-        var height = $(window).height();
-
-        $('#seccion').height(height);
+        sumarColumna("importe-isr", "total-isr");
+        sumarColumna("importe-total", "total-transf");
     });
 
 
@@ -56,7 +32,7 @@
     <div class="cont-button">
         <button class="btn-agregar" onclick="entrarOverlay()">AGREGAR + </button>
     </div>
-
+    
     <div id="overlay" class="no-mostrar">
         <div id="conte-btn-cerrar">
             <button type="button" class="btn-cerrar" onclick="salirOverlay()">X</button>
@@ -85,65 +61,156 @@
         </div>
     </div>
 
-    <div id="tbl">
-        <div id="titulo-tbl">
-            <h2>SAT VS HAP</h2>
+    <div id="tablas">
+        
+        <div class="conte-tbl-concentrado">
+            <table>
+                <div class="titulo-tbl">
+                    <a>TIMBRADO</a>
+                </div>               
+                <thead>
+                    <tr class="titulos-concentrado">
+                        <th>PERIODO</th>
+                        <th>NOMINA</th>
+                        <th>IMPUESTOS RETENIDOS</th>
+                        <th>TOTAL PAGADO</th>
+                    </tr>
+                </thead>
+                <tbody class="tbl-datos-concentrado">                   
+                    {% for timbrado in datos.timbrado %}
+                        <tr class="fila-datos">
+                            <td>{{timbrado.periodo}}</td>
+                            <td>{{timbrado.nombre}}</td>
+                            <td class="importe-isr">{{timbrado.importe_isr}}</td>
+                            <td class="importe-total">00.00</td>                             
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="tbl-totales-concentrado" id="t-timbrado">
+                        <tr class="fila-totales">
+                            <td></td>
+                            <td></td>
+                            <td class="celda-totales total-isr"></td>
+                            <td class="celda-totales total-transf"></td>
+                        </tr>
+                </tfoot>
+            </table>
+            <div class="leer-mas">
+                <a href="">Mas...</a>
+            </div>
         </div>
-        <table id="table_conciliacion">
-            <tr class="titulos">
-                <th>TIPO TIMBRADO</th>
-                <th>DESCRIPCION</th>
-                <th>ENERO</th>
-                <th>FEBRERO</th>
-                <th>MARZO</th>
-                <th>ABRIL</th>
-                <th>MAYO</th>
-                <th>JUNIO</th>
-                <th>AGOSTO</th>
-                <th>SEPTIEMBRE</th>
-                <th>OCTUBRE</th>
-                <th>NOVIEMBRE</th>
-                <th>DICIEMBRE</th>
-            </tr>
-            <tbody id="tbl-datos">
+        
+        <div class="conte-tbl-concentrado">
+            <table>
+                <div class="titulo-tbl">
+                    <a>ARCHIVO RECALCULO IMMS</a>
+                </div>               
+                <thead>
+                    <tr class="titulos-concentrado">
+                        <th>PERIODO</th>
+                        <th>CONTROL</th>
+                        <th>TIPO DE NOMINA</th>
+                        <th>IMPORTE</th>
+                    </tr>
+                </thead>
+                <tbody class="tbl-datos-concentrado">                   
+                    {% for registro in datos.recalculo %}
+                        <tr class="fila-datos">
+                            <td>{{registro.periodo}}</td>
+                            <td>{{registro.control}}</td>
+                            <td>{{registro.tipo_nom}}</td>
+                            <td>{{registro.imp_recalc_red}}</td>                                        
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="tbl-totales-concentrado" id="t-timbrado">
+                        <tr class="fila-totales">
+                            <td></td>
+                            <td></td>
+                            <td class="celda-totales"></td>
+                            <td class="celda-totales"></td>
+                        </tr>
+                </tfoot>
+            </table>
+            <div class="leer-mas">
+                <a href="">Mas...</a>
+            </div>
+        </div>
 
-                <tr class="filas">
-                    <td class="fila-fija">TIMBRADO</td>
-                </tr>
-                <tr class="filas">
-
-                </tr>
-                <tr class="filas">
-
-                </tr>
-                <tr class="filas">
-
-                </tr>
-                <tr class="filas">
-
-                </tr>
-                <tr class="filas">
-
-                </tr>
-            </tbody>
-            {% if nominas%}
-            <tfoot>
-                <tr>
-                    <td class="t-num">Totales</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="t-num"> </td>
-                    <td class="t-num"> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-            {% endif %}
-        </table>
+        <div class="conte-tbl-concentrado">
+            <table>
+                <div class="titulo-tbl">
+                    <h2>TIMBRADO</h2>
+                </div>               
+                <thead>
+                    <tr class="titulos-concentrado">
+                        <th>PERIODO</th>
+                        <th>NOMINA</th>
+                        <th>IMPUESTOS RETENIDOS</th>
+                        <th>TOTAL PAGADO</th>
+                    </tr>
+                </thead>
+                <tbody class="tbl-datos-concentrado">                   
+                    {% for timbrado in datos.timbrado %}
+                        <tr class="fila-datos">
+                            <td>{{timbrado.periodo}}</td>
+                            <td>{{timbrado.nombre}}</td>
+                            <td class="importe-isr">{{timbrado.importe_isr}}</td>
+                            <td>0.00</td>                             
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="tbl-totales-concentrado" id="t-timbrado">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="num-suma"></td>
+                            <td class="num-suma"></td>
+                        </tr>
+                </tfoot>
+            </table>
+            <div class="leer-mas">
+                <a href="">Mas...</a>
+            </div>
+        </div>
+        <div class="conte-tbl-concentrado">
+            <table>
+                <div class="titulo-tbl">
+                    <h2>TIMBRADO</h2>
+                </div>               
+                <thead>
+                    <tr class="titulos-concentrado">
+                        <th>PERIODO</th>
+                        <th>NOMINA</th>
+                        <th>IMPUESTOS RETENIDOS</th>
+                        <th>TOTAL PAGADO</th>
+                    </tr>
+                </thead>
+                <tbody class="tbl-datos-concentrado">                   
+                    {% for timbrado in datos.timbrado %}
+                        <tr class="fila-datos">
+                            <td>{{timbrado.periodo}}</td>
+                            <td>{{timbrado.nombre}}</td>
+                            <td class="importe-isr">{{timbrado.importe_isr}}</td>
+                            <td>0.00</td>                             
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="tbl-totales-concentrado" id="t-timbrado">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="num-suma"></td>
+                            <td class="num-suma"></td>
+                        </tr>
+                </tfoot>
+            </table>
+            <div class="leer-mas">
+                <a href="">Mas...</a>
+            </div>
+        </div>
     </div>
+
+    
 </section>
 {% endblock %}
